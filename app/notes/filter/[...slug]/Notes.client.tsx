@@ -19,7 +19,7 @@ interface Props {
 export default function NoteClient({ tag }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [debouncedSearchQuery] = useDebounce(searchQuery, 300);
   const perPage = 12;
 

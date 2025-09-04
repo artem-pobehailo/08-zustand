@@ -6,11 +6,14 @@ import {
 } from "@tanstack/react-query";
 import NoteDetailsClient from "./NoteDetails.client";
 import { getSingleNote } from "@/lib/api";
+import { Metadata } from "next";
 
 interface NoteDetailsPageProps {
   params: Promise<{ id: string }>;
 }
-export async function generateMetadata({ params }: NoteDetailsPageProps) {
+export async function generateMetadata({
+  params,
+}: NoteDetailsPageProps): Promise<Metadata> {
   const { id } = await params;
   const note = await getSingleNote(id);
   const title = note?.title

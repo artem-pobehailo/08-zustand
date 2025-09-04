@@ -5,12 +5,13 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug?: string[] }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const tagFromUrl = slug?.[0] ?? "All";
   const tag = tagFromUrl;
