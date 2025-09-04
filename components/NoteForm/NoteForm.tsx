@@ -59,7 +59,7 @@ export default function NoteForm({ tags }: NoteFormProps) {
           name="title"
           required
           className={css.input}
-          defaultValue={draft?.title}
+          value={draft?.title || ""}
           onChange={handleChange}
         />
       </div>
@@ -71,7 +71,7 @@ export default function NoteForm({ tags }: NoteFormProps) {
           name="content"
           rows={8}
           className={css.textarea}
-          defaultValue={draft?.content}
+          value={draft?.content || ""}
           onChange={handleChange}
         />
       </div>
@@ -83,7 +83,7 @@ export default function NoteForm({ tags }: NoteFormProps) {
           name="tag"
           required
           className={css.select}
-          defaultValue={draft?.tag}
+          value={draft?.tag || ""}
           onChange={handleChange}
         >
           {tags.map((tag) => (

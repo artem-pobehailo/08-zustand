@@ -21,12 +21,10 @@ export async function generateMetadata({
     : "Note details – NoteHub";
   return {
     title: `Note: ${title}`,
-    description:
-      "NoteHub helps you quickly create, edit and organize your notes in one place",
+    description: note?.content?.slice(0, 50) || "No description available",
     openGraph: {
       title: `Note: ${title}`,
-      description:
-        "NoteHub helps you quickly create, edit and organize your notes in one place",
+      description: note?.content?.slice(0, 50) || "No description available",
       url: `http://localhost:3000/notes/${id}`,
       siteName: "NoteHub",
       images: [

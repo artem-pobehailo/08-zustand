@@ -25,7 +25,7 @@ export default function NoteClient({ tag }: Props) {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [debouncedSearchQuery, tag]);
+  }, [searchQuery, tag]);
 
   const { data, isLoading, isError } = useQuery<FetchNotesResponse, Error>({
     queryKey: ["notes", currentPage, debouncedSearchQuery, tag],
@@ -41,21 +41,25 @@ export default function NoteClient({ tag }: Props) {
       <header className={css.toolbar}>
         <SearchBox value={searchQuery} onChange={setSearchQuery} />
 
-        {totalPages > 1 && (
-          <Pagination
-            page={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        )}
-
         <Link href="/notes/action/create"> Create note + </Link>
       </header>
 
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
 
-      {!isLoading && !isError && notes.length > 0 && <NoteList notes={notes} />}
+      {!isLoading && !isError && notes.length > 0 && (
+        <>
+          <NoteList notes={notes} />
+          {totalPages > 1 && (
+            <Pagination
+              page={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </>
+      )}
+
       {!isLoading && !isError && notes.length === 0 && <p>No notes found</p>}
     </div>
   );
