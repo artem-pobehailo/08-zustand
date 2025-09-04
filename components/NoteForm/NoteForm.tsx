@@ -29,7 +29,7 @@ export default function NoteForm({ tags }: NoteFormProps) {
   const mutation = useMutation({
     mutationFn: addNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes"], exact: false });
       clearDraft();
       router.push("/notes/filter/all");
     },
