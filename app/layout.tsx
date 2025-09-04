@@ -7,7 +7,6 @@ import "./globals.css";
 
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import Head from "next/head";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -47,15 +46,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.variable}>
         <TanStackProvider>
-          <Head>
-            <meta
-              name="description"
-              content="View the notes filtered by: All"
-            />
-            <meta name="robots" content="index, follow" />
-            <title>NoteHub is a convenient note manager</title>
-          </Head>
-
           <Header />
 
           {children}
