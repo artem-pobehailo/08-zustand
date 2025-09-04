@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "NoteHub is a convenient note manager",
     description:
       "NoteHub helps you quickly create, edit and organize your notes in one place",
-    url: `http://localhost:3000/`,
+    url: `https://08-zustand-puce-beta.vercel.app/`,
     siteName: "NoteHub",
     images: [
       {
