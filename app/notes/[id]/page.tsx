@@ -10,6 +10,34 @@ import { getSingleNote } from "@/lib/api";
 interface NoteDetailsPageProps {
   params: Promise<{ id: string }>;
 }
+export async function generateMetadata({ params }: NoteDetailsPageProps) {
+  const { id } = await params;
+  const note = await getSingleNote(id);
+  const title = note?.title
+    ? `Note: ${note.title} – NoteHub`
+    : "Note details – NoteHub";
+  return {
+    title: `Note: ${title}`,
+    description:
+      "NoteHub helps you quickly create, edit and organize your notes in one place",
+    openGraph: {
+      title: `Note: ${title}`,
+      description:
+        "NoteHub helps you quickly create, edit and organize your notes in one place",
+      url: `http://localhost:3000/notes/${id}`,
+      siteName: "NoteHub",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "NoteHub",
+        },
+      ],
+      type: "article",
+    },
+  };
+}
 
 export default async function NoteDetails({ params }: NoteDetailsPageProps) {
   const { id } = await params;

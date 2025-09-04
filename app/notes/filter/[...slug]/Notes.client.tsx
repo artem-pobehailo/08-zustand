@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
-
+import Link from "next/link";
 import { fetchNotes, FetchNotesResponse } from "@/lib/api";
 import css from "./NotesPage.module.css";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -11,8 +11,6 @@ import Pagination from "@/components/Pagination/Pagination";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import NoteList from "@/components/NoteList/NoteList";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 
 interface Props {
   tag?: string;
@@ -51,9 +49,7 @@ export default function NoteClient({ tag }: Props) {
           />
         )}
 
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
-          Create note +
-        </button>
+        <Link href="/notes/action/create"> Create note + </Link>
       </header>
 
       {isLoading && <Loader />}
@@ -61,12 +57,6 @@ export default function NoteClient({ tag }: Props) {
 
       {!isLoading && !isError && notes.length > 0 && <NoteList notes={notes} />}
       {!isLoading && !isError && notes.length === 0 && <p>No notes found</p>}
-
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onSuccess={() => setIsModalOpen(false)} />
-        </Modal>
-      )}
     </div>
   );
 }

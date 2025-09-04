@@ -1,6 +1,28 @@
 // app/not-found.tsx
 
+import { Metadata } from "next";
 import css from "./Home.module.css";
+
+export const metadata: Metadata = {
+  title: "Page not found - NoteHub",
+  description: "Return to the main NoteHub",
+
+  openGraph: {
+    title: "Page not found - NoteHub",
+    description: "Return to the main NoteHub",
+    url: `http://localhost:3000/not-found`,
+
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Page not found - NoteHub",
+      },
+    ],
+    type: "article",
+  },
+};
 
 const NotFound = () => {
   return (

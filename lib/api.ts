@@ -31,7 +31,7 @@ export const fetchNotes = async (
     if (search && search.trim() !== "") {
       params.search = search;
     }
-    if (tag) {
+    if (tag && tag !== "all") {
       params.tag = tag;
     }
 
@@ -56,6 +56,9 @@ export const deleteNote = async (id: string): Promise<Note> => {
 };
 
 export const addNote = async (noteData: NewNoteData): Promise<Note> => {
+  if (!noteData.tag || noteData.tag.length === 0) {
+    throw new Error("You must provide at least one tag.");
+  }
   try {
     const response = await api.post<Note>("/notes", noteData);
     return response.data;
